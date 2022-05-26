@@ -1,6 +1,6 @@
 //Tone generator implementations:
 void tone_generator_values(int sr, int freq, float amp);
-void generateContinuousTone(float* data,int buffer_size);
+void generateContinuousTone(float* data, int buffer_size);
 void tone_generator_free();
 
 //ToneGenerator class:
