@@ -95,18 +95,6 @@ except __builtin__.Exception:
         pass
     _newclass = 0
 
-
-def tone_generator_values(sr, freq, amp):
-    return _tone_generator.tone_generator_values(sr, freq, amp)
-tone_generator_values = _tone_generator.tone_generator_values
-
-def generateContinuousTone(data):
-    return _tone_generator.generateContinuousTone(data)
-generateContinuousTone = _tone_generator.generateContinuousTone
-
-def tone_generator_free():
-    return _tone_generator.tone_generator_free()
-tone_generator_free = _tone_generator.tone_generator_free
 class ToneGenerator(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ToneGenerator, name, value)
@@ -123,6 +111,12 @@ class ToneGenerator(_object):
 
     def getSample(self):
         return _tone_generator.ToneGenerator_getSample(self)
+
+    def generateContinuousTone(self, data):
+        return _tone_generator.ToneGenerator_generateContinuousTone(self, data)
+
+    def tone_generator_free(self):
+        return _tone_generator.ToneGenerator_tone_generator_free(self)
     __swig_destroy__ = _tone_generator.delete_ToneGenerator
     __del__ = lambda self: None
 ToneGenerator_swigregister = _tone_generator.ToneGenerator_swigregister

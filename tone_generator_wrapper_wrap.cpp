@@ -3332,6 +3332,16 @@ SWIG_AsVal_float (PyObject * obj, float *val)
 }
 
 
+  #define SWIG_From_double   PyFloat_FromDouble 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_float  (float value)
+{    
+  return SWIG_From_double  (value);
+}
+
+
 #if NPY_API_VERSION < 0x00000007
 #define NPY_ARRAY_DEFAULT NPY_DEFAULT
 #define NPY_ARRAY_FARRAY  NPY_FARRAY
@@ -3804,106 +3814,9 @@ SWIG_AsVal_float (PyObject * obj, float *val)
 
 
 
-
-  #define SWIG_From_double   PyFloat_FromDouble 
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_float  (float value)
-{    
-  return SWIG_From_double  (value);
-}
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-SWIGINTERN PyObject *_wrap_tone_generator_values(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  float arg3 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  float val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:tone_generator_values",&obj0,&obj1,&obj2)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "tone_generator_values" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "tone_generator_values" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_float(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "tone_generator_values" "', argument " "3"" of type '" "float""'");
-  } 
-  arg3 = static_cast< float >(val3);
-  tone_generator_values(arg1,arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_generateContinuousTone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  float *arg1 = (float *) 0 ;
-  int arg2 ;
-  PyObject *array1 = NULL ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:generateContinuousTone",&obj0)) SWIG_fail;
-  {
-    npy_intp dims[1];
-    if (!PyLong_Check(obj0))
-    {
-      const char* typestring = pytype_string(obj0);
-      PyErr_Format(PyExc_TypeError,
-        "Int dimension expected.  '%s' given.",
-        typestring);
-      SWIG_fail;
-    }
-    arg2 = (int) PyLong_AsSsize_t(obj0);
-    if (arg2 == -1 && PyErr_Occurred()) SWIG_fail;
-    dims[0] = (npy_intp) arg2;
-    array1 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
-    if (!array1) SWIG_fail;
-    arg1 = (float*) array_data(array1);
-  }
-  generateContinuousTone(arg1,arg2);
-  resultobj = SWIG_Py_Void();
-  {
-    resultobj = SWIG_Python_AppendOutput(resultobj,(PyObject*)array1);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_tone_generator_free(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  
-  if (!PyArg_ParseTuple(args,(char *)":tone_generator_free")) SWIG_fail;
-  tone_generator_free();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_new_ToneGenerator(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
@@ -3966,6 +3879,72 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_ToneGenerator_generateContinuousTone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  ToneGenerator *arg1 = (ToneGenerator *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:ToneGenerator_generateContinuousTone",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ToneGenerator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ToneGenerator_generateContinuousTone" "', argument " "1"" of type '" "ToneGenerator *""'"); 
+  }
+  arg1 = reinterpret_cast< ToneGenerator * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyLong_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyLong_AsSsize_t(obj1);
+    if (arg3 == -1 && PyErr_Occurred()) SWIG_fail;
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->generateContinuousTone(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,(PyObject*)array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ToneGenerator_tone_generator_free(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  ToneGenerator *arg1 = (ToneGenerator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:ToneGenerator_tone_generator_free",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ToneGenerator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ToneGenerator_tone_generator_free" "', argument " "1"" of type '" "ToneGenerator *""'"); 
+  }
+  arg1 = reinterpret_cast< ToneGenerator * >(argp1);
+  (arg1)->tone_generator_free();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_delete_ToneGenerator(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ToneGenerator *arg1 = (ToneGenerator *) 0 ;
@@ -3996,11 +3975,10 @@ SWIGINTERN PyObject *ToneGenerator_swigregister(PyObject *SWIGUNUSEDPARM(self), 
 
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
-	 { (char *)"tone_generator_values", _wrap_tone_generator_values, METH_VARARGS, NULL},
-	 { (char *)"generateContinuousTone", _wrap_generateContinuousTone, METH_VARARGS, NULL},
-	 { (char *)"tone_generator_free", _wrap_tone_generator_free, METH_VARARGS, NULL},
 	 { (char *)"new_ToneGenerator", _wrap_new_ToneGenerator, METH_VARARGS, NULL},
 	 { (char *)"ToneGenerator_getSample", _wrap_ToneGenerator_getSample, METH_VARARGS, NULL},
+	 { (char *)"ToneGenerator_generateContinuousTone", _wrap_ToneGenerator_generateContinuousTone, METH_VARARGS, NULL},
+	 { (char *)"ToneGenerator_tone_generator_free", _wrap_ToneGenerator_tone_generator_free, METH_VARARGS, NULL},
 	 { (char *)"delete_ToneGenerator", _wrap_delete_ToneGenerator, METH_VARARGS, NULL},
 	 { (char *)"ToneGenerator_swigregister", ToneGenerator_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
